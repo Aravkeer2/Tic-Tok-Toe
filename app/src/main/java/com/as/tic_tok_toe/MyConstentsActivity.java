@@ -1,5 +1,5 @@
 package com.as.tic_tok_toe;
 
-public class MyConstents {
+public class MyConstentsActivity {
     public static String playerName = "";
 }

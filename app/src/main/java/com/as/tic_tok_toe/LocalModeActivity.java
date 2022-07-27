@@ -1,8 +1,6 @@
 package com.as.tic_tok_toe;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,17 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-public class SingleMode extends AppCompatActivity {
-
-    private static final int[] computerTurns = {1, 3, 2, 9, 5, 7, 4, 6, 8};
-    private static final int[] computerTurns2 = {3, 7, 5, 1, 4, 9, 2, 6, 8};
-    private static final int[] computerTurns3 = {1, 5, 9, 7, 5, 3, 2, 4, 6};
-    private static final int[] computerTurns4 = {1, 7, 4, 3, 5, 9, 8, 6, 2};
-
+public class LocalModeActivity extends AppCompatActivity {
     // winning combinations
     private final List<int[]> combinationsList = new ArrayList<>();
     // done boxes positions by users so users won't select the box again
@@ -33,7 +23,6 @@ public class SingleMode extends AppCompatActivity {
     // ImageViews consist of cross and zero icon
     private ImageView image1, image2, image3, image4, image5, image6, image7, image8, image9;
     private int playerTurn = 1;
-    private int[] data = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,21 +47,6 @@ public class SingleMode extends AppCompatActivity {
         final TextView player1TV = findViewById(R.id.player1TV);
         final TextView player2TV = findViewById(R.id.player2TV);
 
-        Random random = new Random();
-        int position = random.nextInt(4);
-
-        if (position == 0) {
-            data = computerTurns;
-        } else if (position == 1) {
-            data = computerTurns2;
-        } else if (position == 2) {
-            data = computerTurns3;
-        } else {
-            data = computerTurns4;
-        }
-
-        Log.e("klajsfkljafssaf", "asd" + Arrays.toString(data));
-
         // generating winning combinations
         combinationsList.add(new int[]{0, 1, 2});
         combinationsList.add(new int[]{3, 4, 5});
@@ -84,13 +58,13 @@ public class SingleMode extends AppCompatActivity {
         combinationsList.add(new int[]{0, 4, 8});
 
         // setting player name to the TextView
-        player1TV.setText(MyConstents.playerName);
-        player2TV.setText("Computer");
+        player1TV.setText(MyConstentsActivity.playerName);
+        player2TV.setText("Opponent");
 
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("1")) {
+                if(!doneBoxes.contains("1")){
                     selectBox(image1, 1, playerTurn);
                 }
             }
@@ -99,7 +73,7 @@ public class SingleMode extends AppCompatActivity {
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("2")) {
+                if(!doneBoxes.contains("2")){
                     selectBox(image2, 2, playerTurn);
                 }
             }
@@ -108,7 +82,7 @@ public class SingleMode extends AppCompatActivity {
         image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("3")) {
+                if(!doneBoxes.contains("3")){
                     selectBox(image3, 3, playerTurn);
                 }
             }
@@ -117,7 +91,7 @@ public class SingleMode extends AppCompatActivity {
         image4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("4")) {
+                if(!doneBoxes.contains("4")){
                     selectBox(image4, 4, playerTurn);
                 }
             }
@@ -126,7 +100,7 @@ public class SingleMode extends AppCompatActivity {
         image5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("5")) {
+                if(!doneBoxes.contains("5")){
                     selectBox(image5, 5, playerTurn);
                 }
             }
@@ -135,7 +109,7 @@ public class SingleMode extends AppCompatActivity {
         image6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("6")) {
+                if(!doneBoxes.contains("6")){
                     selectBox(image6, 6, playerTurn);
                 }
             }
@@ -144,7 +118,7 @@ public class SingleMode extends AppCompatActivity {
         image7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("7")) {
+                if(!doneBoxes.contains("7")){
                     selectBox(image7, 7, playerTurn);
                 }
             }
@@ -153,7 +127,7 @@ public class SingleMode extends AppCompatActivity {
         image8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("8")) {
+                if(!doneBoxes.contains("8")){
                     selectBox(image8, 8, playerTurn);
                 }
             }
@@ -162,7 +136,7 @@ public class SingleMode extends AppCompatActivity {
         image9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (playerTurn == 1 && !doneBoxes.contains("9")) {
+                if(!doneBoxes.contains("9")){
                     selectBox(image9, 9, playerTurn);
                 }
             }
@@ -178,10 +152,6 @@ public class SingleMode extends AppCompatActivity {
         } else {
             player2Layout.setBackgroundResource(R.drawable.round_back_dark_blue_stroke);
             player1Layout.setBackgroundResource(R.drawable.round_back_dark_blue_20);
-
-            if (doneBoxes.size() < 9) {
-                performComputer();
-            }
         }
     }
 
@@ -198,144 +168,33 @@ public class SingleMode extends AppCompatActivity {
 
         doneBoxes.add(String.valueOf(selectedBoxPosition));
 
+        applyPlayerTurn();
+
         // checking whether player has won the match
         if (checkPlayerWin(playerTurn)) {
-            final WinDialog winDialog;
+            final WinDialogActivity winDialog;
 
             if (playerTurn == 1) {
 
                 // show win dialog
-                winDialog = new WinDialog(SingleMode.this, "You won the game");
+                winDialog = new WinDialogActivity(LocalModeActivity.this, "You won the game");
             } else {
 
                 // show win dialog
-                winDialog = new WinDialog(SingleMode.this, "Computer won the game");
+                winDialog = new WinDialogActivity(LocalModeActivity.this, "Opponent won the game");
             }
 
             winDialog.setCancelable(false);
             winDialog.show();
-        } else {
-            applyPlayerTurn();
         }
 
         // over the game if there is no box left to be selected
         if (doneBoxes.size() == 9) {
 
-            final WinDialog winDialog = new WinDialog(SingleMode.this, "It is a Draw!");
+            final WinDialogActivity winDialog = new WinDialogActivity(LocalModeActivity.this, "It is a Draw!");
             winDialog.setCancelable(false);
             winDialog.show();
         }
-    }
-
-    private void performComputer() {
-
-        int[] combination = new int[0];
-        int selectedToWin = 0;
-
-        // check winning combination of computer
-        for (int i = 0; i < combinationsList.size(); i++) {
-
-            combination = combinationsList.get(i);
-
-            selectedToWin = 0;
-
-
-            if (boxesSelectedBy[combination[0]].equals(String.valueOf(2))) {
-                if (!boxesSelectedBy[combination[1]].equals(String.valueOf(1)) && !boxesSelectedBy[combination[2]].equals(String.valueOf(1))) {
-                    selectedToWin++;
-                }
-            }
-            if (boxesSelectedBy[combination[1]].equals(String.valueOf(2))) {
-                if (!boxesSelectedBy[combination[0]].equals(String.valueOf(1)) && !boxesSelectedBy[combination[2]].equals(String.valueOf(1))) {
-                    selectedToWin++;
-                }
-            }
-            if (boxesSelectedBy[combination[2]].equals(String.valueOf(2))) {
-                if (!boxesSelectedBy[combination[1]].equals(String.valueOf(1)) && !boxesSelectedBy[combination[0]].equals(String.valueOf(1))) {
-                    selectedToWin++;
-                }
-            }
-
-            if (selectedToWin == 2) {
-                break;
-            }
-        }
-
-        if(selectedToWin != 2){
-
-            // prevent opponent from winning
-            for (int i = 0; i < combinationsList.size(); i++) {
-
-                combination = combinationsList.get(i);
-
-                selectedToWin = 0;
-
-                if (boxesSelectedBy[combination[0]].equals(String.valueOf(1))) {
-                    if (!boxesSelectedBy[combination[1]].equals(String.valueOf(2)) && !boxesSelectedBy[combination[2]].equals(String.valueOf(2))) {
-                        selectedToWin++;
-                    }
-                }
-                if (boxesSelectedBy[combination[1]].equals(String.valueOf(1))) {
-                    if (!boxesSelectedBy[combination[0]].equals(String.valueOf(2)) && !boxesSelectedBy[combination[2]].equals(String.valueOf(2))) {
-                        selectedToWin++;
-                    }
-                }
-                if (boxesSelectedBy[combination[2]].equals(String.valueOf(1))) {
-                    if (!boxesSelectedBy[combination[1]].equals(String.valueOf(2)) && !boxesSelectedBy[combination[0]].equals(String.valueOf(2))) {
-                        selectedToWin++;
-                    }
-                }
-
-                if (selectedToWin == 2) {
-                    break;
-                }
-            }
-        }
-
-        if (selectedToWin != 2) {
-
-            for (int l = 1; l <= data.length; l++) {
-                if (!doneBoxes.contains(String.valueOf(data[l]))) {
-                    selectBoxOfComputer(data[l]);
-                    break;
-                }
-            }
-        } else {
-
-            for (int i : combination) {
-                if (!doneBoxes.contains(String.valueOf(i + 1))) {
-                    selectBoxOfComputer(i + 1);
-                    break;
-                }
-            }
-        }
-    }
-
-    private void selectBoxOfComputer(int l) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (l == 1) {
-                    selectBox(image1, l, 2);
-                } else if (l == 2) {
-                    selectBox(image2, l, 2);
-                } else if (l == 3) {
-                    selectBox(image3, l, 2);
-                } else if (l == 4) {
-                    selectBox(image4, l, 2);
-                } else if (l == 5) {
-                    selectBox(image5, l, 2);
-                } else if (l == 6) {
-                    selectBox(image6, l, 2);
-                } else if (l == 7) {
-                    selectBox(image7, l, 2);
-                } else if (l == 8) {
-                    selectBox(image8, l, 2);
-                } else {
-                    selectBox(image9, l, 2);
-                }
-            }
-        }, 2000);
     }
 
     private boolean checkPlayerWin(int playerTurn) {

@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Multiplayer extends AppCompatActivity {
+public class MultiplayerActivity extends AppCompatActivity {
 
     // winning combinations
     private final List<int[]> combinationsList = new ArrayList<>();
@@ -94,15 +94,15 @@ public class Multiplayer extends AppCompatActivity {
         progressDialog.show();
 
         // generate player unique id. Player will be identified by this id.
-        if (com.as.tic_tok_toe.MemoryData.getData("player_id", "", this).isEmpty()) {
+        if (MemoryActivity.getData("player_id", "", this).isEmpty()) {
             playerUniqueId = String.valueOf(System.currentTimeMillis());
-            com.as.tic_tok_toe.MemoryData.saveData("player_id", playerUniqueId, this);
+            MemoryActivity.saveData("player_id", playerUniqueId, this);
         } else {
-            playerUniqueId = com.as.tic_tok_toe.MemoryData.getData("player_id", "", this);
+            playerUniqueId = MemoryActivity.getData("player_id", "", this);
         }
 
         // setting player name to the TextView
-        player1TV.setText(MyConstents.playerName);
+        player1TV.setText(MyConstentsActivity.playerName);
 
         databaseReference.child("connections").addValueEventListener(new ValueEventListener() {
             @Override
@@ -191,7 +191,7 @@ public class Multiplayer extends AppCompatActivity {
 
                                     if (!samePlayer) {
                                         // add player to the connection
-                                        connections.child(playerUniqueId).child("player_name").getRef().setValue(MyConstents.playerName);
+                                        connections.child(playerUniqueId).child("player_name").getRef().setValue(MyConstentsActivity.playerName);
 
                                         // getting both players
                                         for (DataSnapshot players : connections.getChildren()) {
@@ -236,7 +236,7 @@ public class Multiplayer extends AppCompatActivity {
                             connectionUniqueId  = String.valueOf(System.currentTimeMillis());
 
                             // adding first player to the connection and waiting for other to complete the connection and play the game
-                            snapshot.child(connectionUniqueId).child(playerUniqueId).child("player_name").getRef().setValue(MyConstents.playerName);
+                            snapshot.child(connectionUniqueId).child(playerUniqueId).child("player_name").getRef().setValue(MyConstentsActivity.playerName);
 
                             status = "waiting";
                         }
@@ -250,7 +250,7 @@ public class Multiplayer extends AppCompatActivity {
                         connectionUniqueId = String.valueOf(System.currentTimeMillis());
 
                         // adding first player to the connection and waiting for other to complete the connection and play the game
-                        snapshot.child(connectionUniqueId).child(playerUniqueId).child("player_name").getRef().setValue(MyConstents.playerName);
+                        snapshot.child(connectionUniqueId).child(playerUniqueId).child("player_name").getRef().setValue(MyConstentsActivity.playerName);
 
                         status = "waiting";
                     }
@@ -323,16 +323,16 @@ public class Multiplayer extends AppCompatActivity {
 
                     String getWinPlayerId = snapshot.child("player_id").getValue(String.class);
 
-                    final WinDialog winDialog;
+                    final WinDialogActivity winDialog;
 
                     if (getWinPlayerId.equals(playerUniqueId)) {
 
                         // show win dialog
-                        winDialog = new WinDialog(Multiplayer.this, "You won the game");
+                        winDialog = new WinDialogActivity(MultiplayerActivity.this, "You won the game");
                     } else {
 
                         // show win dialog
-                        winDialog = new WinDialog(Multiplayer.this, "Opponent won the game");
+                        winDialog = new WinDialogActivity(MultiplayerActivity.this, "Opponent won the game");
                     }
 
                     winDialog.setCancelable(false);
@@ -549,7 +549,7 @@ public class Multiplayer extends AppCompatActivity {
         // over the game if there is no box left to be selected
         if (doneBoxes.size() == 9) {
 
-            final WinDialog winDialog = new WinDialog(Multiplayer.this, "It is a Draw!");
+            final WinDialogActivity winDialog = new WinDialogActivity(MultiplayerActivity.this, "It is a Draw!");
             winDialog.setCancelable(false);
             winDialog.show();
         }

@@ -21,21 +21,21 @@ public class GameTypeActivity extends AppCompatActivity {
         singlePlayerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GameTypeActivity.this, com.as.tic_tok_toe.SingleMode.class));
+                startActivity(new Intent(GameTypeActivity.this, SingleModeActivity.class));
             }
-        });
+        }); //startActivity(new Intent(GameTypeActivity.this, com.as.tic_tok_toe.SingleMode.class));
 
         multiplayerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GameTypeActivity.this, Multiplayer.class));
+                startActivity(new Intent(GameTypeActivity.this, MultiplayerActivity.class));
             }
         });
 
         localModeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GameTypeActivity.this, com.as.tic_tok_toe.LocalMode.class));
+                startActivity(new Intent(GameTypeActivity.this, LocalModeActivity.class));
             }
         });
     }

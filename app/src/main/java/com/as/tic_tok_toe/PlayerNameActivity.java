@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-public class PlayerName extends AppCompatActivity {
+public class PlayerNameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +24,16 @@ public class PlayerName extends AppCompatActivity {
             public void onClick(View v) {
 
                 // getting PlayerName from EditText to a String variable
-                MyConstents.playerName = playerNameEt.getText().toString();
+                MyConstentsActivity.playerName = playerNameEt.getText().toString();
 
                 // checking whether player has entered his name
-                if(MyConstents.playerName.isEmpty()){
-                    Toast.makeText(PlayerName.this, "Please enter player name", Toast.LENGTH_SHORT).show();
+                if(MyConstentsActivity.playerName.isEmpty()){
+                    Toast.makeText(PlayerNameActivity.this, "Please enter player name", Toast.LENGTH_SHORT).show();
                 }
                 else{
 
                     // creating intent to open MainActivity
-                    Intent intent = new Intent(PlayerName.this, GameTypeActivity.class);
+                    Intent intent = new Intent(PlayerNameActivity.this, GameTypeActivity.class);
 
                     // opening MainActivity
                     startActivity(intent);

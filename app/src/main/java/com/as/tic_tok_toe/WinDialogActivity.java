@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-public class WinDialog extends Dialog {
+public class WinDialogActivity extends Dialog {
 
     private final String message;
     private final Activity activity;
 
-    public WinDialog(@NonNull Context context, String message) {
+    public WinDialogActivity(@NonNull Context context, String message) {
         super(context);
         this.message = message;
         this.activity = ((Activity) context);

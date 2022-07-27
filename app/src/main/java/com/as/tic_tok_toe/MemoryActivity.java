@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public final class MemoryData {
+public final class MemoryActivity {
 
     public static void saveData(String filename, String data, Context context) {
         try {

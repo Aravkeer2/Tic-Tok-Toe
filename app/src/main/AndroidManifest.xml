@@ -11,11 +11,11 @@
         android:theme="@style/Theme.TicTokToe">
 
         <activity
-            android:name=".SingleMode"
+            android:name=".SingleModeActivity"
             android:exported="false"/>
         <activity android:name=".GameTypeActivity"
         android:exported="false"/>
-        <activity android:name="PlayerName"
+        <activity android:name=".PlayerNameActivity"
             android:exported="true">
 
 
@@ -25,8 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Multiplayer"/>
-        <activity android:name=".LocalMode"/>
+        <activity android:name=".MultiplayerActivity"/>
+        <activity android:name=".LocalModeActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
